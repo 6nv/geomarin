@@ -1,12 +1,8 @@
 {
-  "name": "marinle",
-  "version": "1.0.0",
-  "description": "A daily puzzle game relating to the outdoor treasures of Marin county, California.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf node_modules package-lock.json dist"
   },
-  "keywords": ["Test"],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "webpack-cli": "6.0.1"
+  }
 }
