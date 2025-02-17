@@ -1,18 +1,12 @@
-import webpack from 'webpack';
+import { Configuration } from 'webpack';
 
-const config: webpack.Configuration = {
-  entry: './src/index.ts',
+export default {
   resolve: {
     extensions: ['.ts'],
   },
   module: {
     rules: [
-      {
-        test: /\.ts$/,
-        use: 'ts-loader',
-      },
+      { test: /\.ts$/, use: 'ts-loader' },
     ],
   },
-};
-
-export default config;
+} as Configuration;
