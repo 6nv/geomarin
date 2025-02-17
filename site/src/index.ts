@@ -3,12 +3,12 @@ import { setColor } from './lib';
 
 window.addEventListener('load', main);
 
-function main() {
+function main(): void {
     console.log('Loaded!');
     const map = document.getElementById('marin-map'),
-        buttonContainer = document.getElementById('buttons');
+        buttonContainer = document.getElementById('buttons')!;
     if (map instanceof HTMLObjectElement) {
-        const doc = map.contentDocument,
+        const doc = map.contentDocument!,
             paths = doc.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'path'),
             filterOut = [
                 'Water',
@@ -16,8 +16,8 @@ function main() {
                 'Outer Territory',
                 'Marin County',
             ],
-            filteredPaths = [...paths].filter(path => !filterOut.includes(path.id)).sort((a, b) => a.id.localeCompare(b.id)),
-            territories = {};
+            filteredPaths = Array.from(paths).filter(path => !filterOut.includes(path.id)).sort((a, b) => a.id.localeCompare(b.id)),
+            territories: { [k: string]: SVGElement } = {};
         filteredPaths.forEach(path => {
             territories[path.id] = path;
             const button = document.createElement('div');
