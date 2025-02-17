@@ -1,6 +1,6 @@
 # GeoMarin
 
-A daily puzzle game relating to the outdoor treasures of Marin county, California.
+A daily puzzle game dedicated to the unique architecture and natural beauty of Marin county, California.
 
 ## Map
 
