@@ -1,18 +1,22 @@
-export const
+/**
+ * Global properties
+ */
+export default {
   /**
    * Colors for SVG paths (regions)
    */
-  COLORS = {
-    DEFAULT: '#f2f2f2',
-    HOVER: '#bcbcbc',
-    ACTIVE: '#cdefab',
+  colors: {
+    default: '#f2f2f2',
+    hover: '#bcbcbc',
+    active: '#cdefab',
   },
   /**
    * SVG paths that should not be activated
    */
-  STATIC_PATHS = [
+  staticPathNames: [
     'Water',
     'Coastal Marin',
     'Outer Territory',
     'Marin County',
-  ];
+  ],
+};
