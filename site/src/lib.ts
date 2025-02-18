@@ -24,4 +24,25 @@ export namespace Lib {
     path.addEventListener('mousedown', () => setColor(path, button, global.colors.active));
     path.addEventListener('mouseup', () => setColor(path, button, global.colors.hover));
   }
+  /**
+   * Create an SVG text element.
+   */
+  export function createText(fill: string, fontSizeRem: number, x: number, y: number, textAnchor: 'start' | 'middle' | 'end', dominantBaseline: 'alphabetic' | 'middle' | 'hanging'): SVGTextElement {
+    const text: SVGTextElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('font-family', 'sans-serif');
+    text.setAttribute('font-size', fontSizeRem.toString() + 'rem');
+    text.setAttribute('fill', fill);
+    text.setAttribute('x', x.toString() + 'px');
+    text.setAttribute('y', y.toString() + 'px');
+    text.setAttribute('text-anchor', textAnchor);
+    text.setAttribute('dominant-baseline', dominantBaseline);
+    return text;
+  }
+  /**
+   * Show a tooltip when the mouse hovers over a path.
+   */
+  export function handlePathTitle(path: SVGElement, text: SVGTextElement): void {
+    path.addEventListener('mouseenter', () => text.textContent = path.id);
+    path.addEventListener('mouseleave', () => text.textContent = '');
+  }
 }
