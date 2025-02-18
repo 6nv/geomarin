@@ -1,38 +1,26 @@
-import { ACTIVE_COLOR, DEFAULT_COLOR, HOVER_COLOR } from './globals';
-import { setColor } from './lib';
+import globals from './globals';
+import { Lib } from './lib';
 
 window.addEventListener('load', main);
 
 function main(): void {
-    console.log('Loaded!');
-    const map = document.getElementById('marin-map'),
-        buttonContainer = document.getElementById('buttons')!;
-    if (map instanceof HTMLObjectElement) {
-        const doc = map.contentDocument!,
-            paths = doc.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'path'),
-            filterOut = [
-                'Water',
-                'Coastal Marin',
-                'Outer Territory',
-                'Marin County',
-            ],
-            filteredPaths = Array.from(paths).filter(path => !filterOut.includes(path.id)).sort((a, b) => a.id.localeCompare(b.id)),
-            territories: { [k: string]: SVGElement } = {};
-        filteredPaths.forEach(path => {
-            territories[path.id] = path;
-            const button = document.createElement('div');
-            button.setAttribute('class', 'button')
-            buttonContainer.append(button);
-            button.innerText = path.id;
-            button.addEventListener('mouseenter', () => setColor(path, button, HOVER_COLOR));
-            button.addEventListener('mouseleave', () => setColor(path, button, DEFAULT_COLOR));
-            button.addEventListener('mousedown', () => setColor(path, button, ACTIVE_COLOR));
-            button.addEventListener('mouseup', () => setColor(path, button, HOVER_COLOR));
-            path.style.cursor = 'pointer';
-            path.addEventListener('mouseenter', () => setColor(path, button, HOVER_COLOR));
-            path.addEventListener('mouseleave', () => setColor(path, button, DEFAULT_COLOR));
-            path.addEventListener('mousedown', () => setColor(path, button, ACTIVE_COLOR));
-            path.addEventListener('mouseup', () => setColor(path, button, HOVER_COLOR));
-        });
-    }
+  console.log('Loaded!');
+  const map: HTMLObjectElement = document.getElementById('marin-map') as HTMLObjectElement,
+    buttonContainer: HTMLDivElement = document.getElementById('buttons') as HTMLDivElement,
+    doc: Document = map.contentDocument!,
+    paths: Array<SVGElement> = Array.from(doc.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'path')),
+    filteredPaths: Array<SVGElement> = paths
+      .filter(path => !globals.staticPathNames.includes(path.id))
+      .sort((a, b) => a.id.localeCompare(b.id)),
+    title: SVGTextElement = Lib.createText('white', 0.75, 10, 290, 'start', 'alphabetic');
+  doc.firstChild?.appendChild(title);
+  filteredPaths.forEach(path => {
+    const button = document.createElement('div');
+    button.setAttribute('class', 'button')
+    buttonContainer.append(button);
+    button.innerText = path.id;
+    path.style.cursor = 'pointer';
+    Lib.handlePathTitle(path, title);
+    Lib.setColorBehavior(path, button);
+  });
 }
