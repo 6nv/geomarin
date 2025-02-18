@@ -5,7 +5,8 @@
 }
 
 body {
-  margin: 0;
+  max-width: 40rem;
+  margin: 0 auto;
   padding: 1rem;
   font-family: sans-serif;
   background: black;
@@ -16,23 +17,16 @@ div.flexrow {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-div.flexcol {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 50rem;
-  margin: auto;
-}
-
-h1 {
+h1,
+h2 {
   text-align: center;
   margin: 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #4d4d4d;
 }
 
 div.counter {
@@ -46,13 +40,27 @@ div.counter {
 
 #marin-map {
   width: 100%;
+  margin: 0.25rem 0;
+}
+
+#row2 {
+  height: 20rem;
+}
+
+#hint,
+#buttons {
+  border: 1px solid #4d4d4d;
+  height: 100%;
+  overflow: auto;
+}
+
+#hint {
+  width: 100%;
+  padding: 0.5rem;
 }
 
 #buttons {
   width: max-content;
-  max-height: 500px;
-  overflow: auto;
-  border: 1px solid #4d4d4d;
   margin-left: 0.25rem;
 }
 
@@ -72,4 +80,23 @@ div.button:hover {
 
 div.button:active {
   background: #cdefab;
+}
+
+div#footer {
+  color: #cdcdcd;
+  text-align: center;
+}
+
+a,
+a:link,
+a:visited {
+  color: #f2f2f2;
+}
+
+a:hover {
+  color: #cdcdcd;
+}
+
+a:active {
+  color: #cdefab;
 }
